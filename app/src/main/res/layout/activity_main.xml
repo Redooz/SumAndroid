@@ -66,6 +66,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="15dp"
         android:layout_below="@+id/editTxtNum2"
+        android:onClick="sum"
         >
     </com.google.android.material.button.MaterialButton>
 
