@@ -1,10 +1,13 @@
 package com.redoz.sumandroid
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import com.google.android.material.button.MaterialButton
 
 class MainActivity : AppCompatActivity() {
@@ -26,12 +29,23 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    @SuppressLint("ServiceCast")
     fun sum(view: View) {
+        if (editTxtNum1.text.toString() == "" || editTxtNum2.text.toString() == "") {
+            Toast.makeText(this, "Hay campos vacios", Toast.LENGTH_LONG).show()
+            return
+        }
+
         num1 = editTxtNum1.text.toString().toDouble()
         num2 = editTxtNum2.text.toString().toDouble()
 
         var result = num1 + num2
 
         txtVResult.text = result.toString()
+
+        val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+
+        // on below line hiding our keyboard.
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0)
     }
 }
